@@ -15,25 +15,21 @@ import javax.swing.JPanel;
 
 public class FirstWindow extends JFrame {
 
-	private JPanel container = new JPanel() ;
+	private JPanel container = new JPanel() ;    // un JFrame contient un ou plusieurs JPanel
 
-	String[] tab_string_control  = {"Let's Rock!", "Stop", "Accelerate", "Graph"} ;
-	JButton[] tab_button_control   = new JButton[tab_string_control.length ] ;  // ensemble des boutons de control
-	int N = 10000 ;   //NOMBRE DE BATAILLES
+	String[] tab_string_control = {"Let's Rock!", "Stop"} mqlksjdfmlqsjfmlqjskfmklsd;
+	JButton[] tab_button_control = new JButton[tab_string_control.length ] ;  
+	int N = 100 ;  
 
-	private Dimension dim = new Dimension(180, 40);   // pour les boutons de controle
-	Font font ; // format par defaut du texte
-
-	private Thread t;
-	boolean fonctionne = false ;  // un thread a deja ete cree sans etre termine
-	public boolean lent = true ;  // ralentir l'affichage ou non
+	private Dimension dim = new Dimension(180, 40);   // on peut définir une variable contenant une dimension de boutons
+	Font font ; // on peut aussi définir une variable contenant un format de texte
 
 	public FirstWindow() {
-		setTitle ("Simulation Papier-Caillou-Ciseaux") ;
-		setSize (1000, 700) ;                               
+		setTitle ("Sample window") ;
+		setSize (500, 400) ;                               
 		setLocation (500,0) ;              	         
 		setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE) ; 
-		setResizable (false) ;
+		setResizable (true) ;
 		initComposants() ;
 		setContentPane(container) ;
 		setVisible(true);			
@@ -44,10 +40,11 @@ public class FirstWindow extends JFrame {
 		JPanel Boutons = new JPanel() ;
 		JPanel affichage = new JPanel() ;
 
+		/* 
 		JLabel label1 = new JLabel("Joueur 1:") ;
 		label1.setFont (new Font("Courier", Font.BOLD, 18));
-		//			Strategy1.add (label1) ;
-
+		Strategy1.add (label1) ;
+		 */
 		// INITIALISATION DES BOUTONS
 		// les boutons de control
 		for ( int i = 0 ; i < tab_string_control.length ; i++ ) {
@@ -85,15 +82,6 @@ public class FirstWindow extends JFrame {
 			bouton.setEnabled(true) ;
 			bouton.setFont(font) ;
 		}
-//		for (JButton bouton: tab_button_strategy1) {
-//			bouton.setEnabled(true) ;
-//			bouton.setFont(font) ;
-//		}
-//		for (JButton bouton: tab_button_strategy2) {
-//			bouton.setEnabled(true) ;
-//			bouton.setFont(font) ;
-//		}
-
 	}
 
 	/**
@@ -116,9 +104,6 @@ public class FirstWindow extends JFrame {
 				}
 			}
 			else if (arg0.getSource() == tab_button_control[1]) {   // stop
-				tab_button_control[0].setEnabled(true) ;
-				tab_button_control[1].setEnabled(false) ;
-				lent = true ;
 				t.suspend() ;
 			}
 			else if (arg0.getSource() == tab_button_control[2]) {    // accelerate
