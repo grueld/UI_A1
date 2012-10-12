@@ -91,5 +91,3 @@ public class FirstWindow extends JFrame {
 		}
 	}
 }
-
-
