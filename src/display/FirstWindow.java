@@ -68,24 +68,24 @@ public class FirstWindow extends JFrame {
 	 * pour l'affichage il faut souvent utiliser repaint() mais je ne sais plus à quel moment
 	 */
 	public void affichageBataille (int choix1, int choix2, int score) {
-//		p1.repaint() ;
-//		p2.repaint();
+		//p1.repaint() ;
+		//p2.repaint();
 	}
 
 	public void enableButtons() {
 		for (JButton bouton: tab_button_control) {
-			bouton.setEnabled(true) ;
-			bouton.setFont(font) ;
+			bouton.setEnabled(true) ;     // permet de rendre utilisable ou non un bouton
+			bouton.setFont(font) ;        // configure un format pour le texte du bouton
 		}
 	}
 
 	/**
-	 * Ecoute les boutons de demarrage et d'arret de la simulation
+	 * Ecoute les clics sur les boutons
 	 */
 	class BoutonListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent arg0) {
-			if (arg0.getSource() == tab_button_control[0]) {     // debut/reprise
+			// if (arg0.getSource() == tab_button_control[0]) {     // permet d'identitifier quel bouton
 				tab_button_control[0].setEnabled(false) ;
 				tab_button_control[1].setEnabled(true) ;
 				tab_button_control[2].setEnabled(true) ;
@@ -111,7 +111,6 @@ public class FirstWindow extends JFrame {
 			Font font1 = new Font("Courier", Font.BOLD, 16);
 			Font font2 = new Font("Courier", Font.BOLD, 10);
 
-			// POUR LES QUATRES PREMIERES STRAGTEGIES: JOUEUR 1
 			//				if (arg0.getSource() == tab_button_strategy1[0]) {
 			//					strategy1 = new Optimale() ;
 			//					for (int i = 0; i < tab_string_strategy.length; i++) {
