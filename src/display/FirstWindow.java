@@ -17,7 +17,7 @@ public class FirstWindow extends JFrame {
 
 	private JPanel container = new JPanel() ;    // un JFrame contient un ou plusieurs JPanel
 
-	String[] tab_string_control = {"Let's Rock!", "Stop"} ;
+	String[] tab_string_control = {"Let's Rock!", "Stop"} mqlksjdfmlqsjfmlqjskfmklsd;
 	JButton[] tab_button_control = new JButton[tab_string_control.length ] ;  
 	int N = 100 ;  
 
@@ -40,10 +40,11 @@ public class FirstWindow extends JFrame {
 		JPanel Boutons = new JPanel() ;
 		JPanel affichage = new JPanel() ;
 
+		/* 
 		JLabel label1 = new JLabel("Joueur 1:") ;
 		label1.setFont (new Font("Courier", Font.BOLD, 18));
-		//			Strategy1.add (label1) ;
-
+		Strategy1.add (label1) ;
+		 */
 		// INITIALISATION DES BOUTONS
 		// les boutons de control
 		for ( int i = 0 ; i < tab_string_control.length ; i++ ) {
