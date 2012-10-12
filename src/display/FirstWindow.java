@@ -79,46 +79,15 @@ public class FirstWindow extends JFrame {
 	class BoutonListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent arg0) {
-			// if (arg0.getSource() == tab_button_control[0]) {     // permet d'identitifier quel bouton
-			tab_button_control[0].setEnabled(false) ;
-			tab_button_control[1].setEnabled(true) ;
-
-			double [] tab = new double[3] ;
-			tab_button_control[3].setEnabled(false) ;
-			GraphingData graph = new GraphingData( tab ) ;
-			container.add(graph, BorderLayout.CENTER) ;
-			enableButtons() ;
-			for (JButton bouton: tab_button_control) { bouton.setEnabled(false) ;}
-		}
-	}
-
-
-	/**
-	 * Ecoute les boutons de choix des strategies
-	 */
-	class StrategyListener implements ActionListener {
-
-		public void actionPerformed(ActionEvent arg0) {
-			tab_button_control[0].setEnabled(true) ;
-			Font font1 = new Font("Courier", Font.BOLD, 16);
-			Font font2 = new Font("Courier", Font.BOLD, 10);
-
-			//				if (arg0.getSource() == tab_button_strategy1[0]) {
-			//					strategy1 = new Optimale() ;
-			//					for (int i = 0; i < tab_string_strategy.length; i++) {
-			//						tab_button_strategy1[i].setFont (font2) ;
-			//						tab_button_strategy1[i].setEnabled(false) ;
-			//					}
-			//				}
-			//				else if (arg0.getSource() == tab_button_strategy1[1]) {     
-			//					strategy1 = new BufferVariable( 20 ) ;
-			//					for (int i = 0; i < tab_string_strategy.length; i++) {
-			//						tab_button_strategy1[i].setFont (font2) ;
-			//						tab_button_strategy1[i].setEnabled(false) ;
-			//					}
-			//					tab_button_strategy1[1].setFont (font1) ;
-			//					p1.setStrategy("buffer20") ;
-			//				}
+			if (arg0.getSource() == tab_button_control[0]) {     // permet d'identitifier quel bouton
+				tab_button_control[0].setEnabled(false) ;
+				tab_button_control[1].setEnabled(true) ;
+			}
+			if (arg0.getSource() == tab_button_control[1]) {     // permet d'identitifier quel bouton
+				double [] tab = new double[3] ;
+				tab_button_control[0].setEnabled(true) ;
+				tab_button_control[1].setEnabled(false) ;
+			}
 		}
 	}
 }
