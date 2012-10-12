@@ -1,3 +1,3 @@
 UI_A1
 =====
-test ludox²
+test ludo
