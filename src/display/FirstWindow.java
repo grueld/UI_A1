@@ -17,21 +17,22 @@ public class FirstWindow extends JFrame {
 
 	private JPanel container = new JPanel() ;    // un JFrame contient un ou plusieurs JPanel
 
-	String[] tab_string_control = {"Let's Rock!", "Stop"} mqlksjdfmlqsjfmlqjskfmklsd;
+	String[] tab_string_control = {"Let's Rock!", "Stop"} ;
 	JButton[] tab_button_control = new JButton[tab_string_control.length ] ;  
 	int N = 100 ;  
 
 	private Dimension dim = new Dimension(180, 40);   // on peut définir une variable contenant une dimension de boutons
-	Font font ; // on peut aussi définir une variable contenant un format de texte
+	Font font = new Font("Courier", Font.BOLD, 18) ; // on peut aussi définir une variable contenant un format de texte
 
 	public FirstWindow() {
+		// ici on a le titre, la taille et quelques settings de la fenetre
 		setTitle ("Sample window") ;
 		setSize (500, 400) ;                               
 		setLocation (500,0) ;              	         
 		setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE) ; 
 		setResizable (true) ;
 		initComposants() ;
-		setContentPane(container) ;
+		setContentPane(container) ; //ici on ajoute le JPanel qui contient tout ce que l'on veut afficher
 		setVisible(true);			
 	}
 
@@ -40,37 +41,31 @@ public class FirstWindow extends JFrame {
 		JPanel Boutons = new JPanel() ;
 		JPanel affichage = new JPanel() ;
 
-		/* 
-		JLabel label1 = new JLabel("Joueur 1:") ;
-		label1.setFont (new Font("Courier", Font.BOLD, 18));
-		Strategy1.add (label1) ;
+		/*
+		JLabel label1 = new JLabel("Joueur 1:") ;             // on crée un label, c'est-à-dire une phrase que l'on veut afficher
+		label1.setFont (new Font("Courier", Font.BOLD, 18));  //on choisi le format du text
+		un_jpanel.add (label1) ;                              //ensuite on doit l'ajouter à un JPanel
 		 */
+		
 		// INITIALISATION DES BOUTONS
-		// les boutons de control
 		for ( int i = 0 ; i < tab_string_control.length ; i++ ) {
 			tab_button_control[i] = new JButton(tab_string_control[i]);
 			tab_button_control[i].setPreferredSize(dim);
-			tab_button_control[i].addActionListener (new BoutonListener()) ;
+			tab_button_control[i].addActionListener (new BoutonListener()) ;  // on ajoute un listener qui permet d'écouter le clic
 			tab_button_control[i].setEnabled (false) ;
-			Boutons.add (tab_button_control[i]) ;
+			Boutons.add (tab_button_control[i]) ;  // on ajoute le bouton à un JPanel pour l'afficher
 		}
-		font = tab_button_control[0].getFont() ;
 
 		// LE CONTENEUR
-		container.setLayout(new BorderLayout());
+		container.setLayout(new BorderLayout());  // on choisit le layout qui va oganiser le JPanel
 		container.setBackground(Color.WHITE);
-		Boutons.setBackground(Color.white) ;
 
-		// POSITIONNEMENT ET AJOUT DES BOUTONS
-		container.add(Boutons, BorderLayout.SOUTH) ;
+		Boutons.setBackground(Color.white) ;
+		container.add(Boutons, BorderLayout.SOUTH) ;  //on place les boutons dans le JPanel suivant le layout
 	}
 
 	/**
-	 * Affiche les images corresponda	nt au choix de chaque joueur
-	 * @param choix1 : pour le joueur 1
-	 * @param choix2 : pour le joueur 2
-	 * score: correspond au score du joueur 1 (on en déduit le score du joueur deux
-	 * car le jeu est a smme nulle) 
+	 * pour l'affichage il faut souvent utiliser repaint() mais je ne sais plus à quel moment
 	 */
 	public void affichageBataille (int choix1, int choix2, int score) {
 //		p1.repaint() ;
@@ -94,27 +89,12 @@ public class FirstWindow extends JFrame {
 				tab_button_control[0].setEnabled(false) ;
 				tab_button_control[1].setEnabled(true) ;
 				tab_button_control[2].setEnabled(true) ;
-				if (fonctionne == false) {
-					fonctionne = true ;
-					t = new Thread (new PlaySimulation()) ;
-					t.start() ;
-				}
-				else {
-					t.resume() ;
-				}
-			}
-			else if (arg0.getSource() == tab_button_control[1]) {   // stop
-				t.suspend() ;
-			}
-			else if (arg0.getSource() == tab_button_control[2]) {    // accelerate
-				lent = false ;
 			}
 			else if (arg0.getSource() == tab_button_control[3]) {    // graph
 				double [] tab = new double[3] ;
 				tab_button_control[3].setEnabled(false) ;
 				GraphingData graph = new GraphingData( tab ) ;
 				container.add(graph, BorderLayout.CENTER) ;
-				lent = true ;
 				enableButtons() ;
 				for (JButton bouton: tab_button_control) { bouton.setEnabled(false) ;}
 			}
@@ -149,23 +129,6 @@ public class FirstWindow extends JFrame {
 			//					p1.setStrategy("buffer20") ;
 			//				}
 		}
-	}
-
-	/**
-	 * Classe implementant Runnable pour pouvoir créer un thread contenant la simulation,
-	 * elle peut ainsi etre stoppée puis remise en route
-	 */
-	class PlaySimulation implements Runnable {
-
-		public void run() {
-			setName ("Thread d'affichage") ;
-			// l'activité principale du thread
-			//	PCC.partie (N, strategy1, strategy2, FenetreSimulation.this) ;
-			fonctionne = false ;
-			tab_button_control[1].setEnabled(false) ;
-			lent = true ;
-		}
-
 	}
 }
 
