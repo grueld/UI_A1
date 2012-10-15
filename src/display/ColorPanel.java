@@ -19,6 +19,7 @@ public class ColorPanel extends JPanel implements ActionListener
 	   greyPanel = new JPanel();
 	   chooserButton.addActionListener(this);
 	   setLayout(new GridLayout(3, 1));
+	   setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
 	   add(chooserButton);
 	   add(colorPanel);
 	   add(greyPanel);
@@ -36,5 +37,4 @@ public class ColorPanel extends JPanel implements ActionListener
     	  }
       }
    }
-
 }
