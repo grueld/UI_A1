@@ -3,6 +3,7 @@ package display;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -13,11 +14,8 @@ import javax.swing.border.EmptyBorder;
 public class SecondWindow extends JFrame {
 
 	private JPanel contentPane;
-	private List cPList ;
-
-	/**
-	 * Launch the application.
-	 */
+	private List<ColorPanel> cPList= new ArrayList<ColorPanel> () ;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -50,10 +48,14 @@ public class SecondWindow extends JFrame {
 
 	public void initComposants(int nbrOfColor) {
 		for (int i = 0; i < nbrOfColor ; i++) {
-			JPanel pan = new JPanel() ;
-			pan.add(new JButton("num pan" + i)) ;
+			ColorPanel pan = new ColorPanel() ;
 			cPList.add(pan) ;
 		}
 		for (Object p : cPList) contentPane.add((JPanel) p) ;
+	}
+	
+	public void deleteColorPanel (int id) {
+		cPList.remove(id) ;
+		this.dispose() ;
 	}
 }
