@@ -1,6 +1,5 @@
 package display;
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,19 +16,15 @@ import javax.swing.JPanel;
 public class FirstWindow extends JFrame {
 
 	private JPanel container = new JPanel() ;    // un JFrame contient un ou plusieurs JPanel
-
-	String[] tab_string_control = {"Let's Rock!", "Stop"} ;
-	JButton[] tab_button_control = new JButton[tab_string_control.length ] ;  
-	int N = 100 ;  
-
-	private Dimension dim = new Dimension(180, 40);   // on peut définir une variable contenant une dimension de boutons
-	Font font = new Font("Courier", Font.BOLD, 18) ; // on peut aussi définir une variable contenant un format de texte
+	int colors ;
+	JComboBox combo1 ;
+	JButton but ;
 
 	public FirstWindow() {
 		// ici on a le titre, la taille et quelques settings de la fenetre
-		setTitle ("Sample window") ;
-		setSize (500, 400) ;                               
-		setLocation (500,0) ;              	         
+		setTitle ("chaud les marons chauds") ;
+		setSize (200, 200) ;                               
+		setLocation (300,0) ;              	         
 		setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE) ; 
 		setResizable (true) ;
 		initComposants() ;
@@ -37,57 +33,41 @@ public class FirstWindow extends JFrame {
 	}
 
 	private void initComposants() {
+		JLabel lab = new JLabel("how many for you?") ;
+		lab.setFont (new Font("Courier", Font.BOLD, 18)) ;
 
-		JPanel Boutons = new JPanel() ;
-		JPanel affichage = new JPanel() ;
+		String[] tab = {"2", "3", "4", "5"} ;
+		combo1 = new JComboBox(tab);
+		combo1.addActionListener(new ButtonListener()) ;
+
+		but = new JButton("chaud patate") ;  
+		but.addActionListener (new ButtonListener()) ;
+
 
 		/*
-		JLabel label1 = new JLabel("Joueur 1:") ;             // on crée un label, c'est-à-dire une phrase que l'on veut afficher
-		label1.setFont (new Font("Courier", Font.BOLD, 18));  //on choisi le format du text
-		un_jpanel.add (label1) ;                              //ensuite on doit l'ajouter à un JPanel
+			JLabel label1 = new JLabel("Joueur 1:") ;             // on crée un label, c'est-à-dire une phrase que l'on veut afficher
+			label1.setFont (new Font("Courier", Font.BOLD, 18));  //on choisi le format du text
+			un_jpanel.add (label1) ;                              //ensuite on doit l'ajouter à un JPanel
 		 */
 
-		// INITIALISATION DES BOUTONS
-		for ( int i = 0 ; i < tab_string_control.length ; i++ ) {
-			tab_button_control[i] = new JButton(tab_string_control[i]);
-			tab_button_control[i].setPreferredSize(dim) ;   //configure le choix de la dimension
-			tab_button_control[i].addActionListener (new BoutonListener()) ;  // on ajoute un listener qui permet d'écouter le clic
-			tab_button_control[i].setEnabled(true) ;     // permet de rendre utilisable ou non un bouton
-			tab_button_control[i].setFont(font) ;        // configure un format pour le texte du bouton
-			Boutons.add (tab_button_control[i]) ;  // on ajoute le bouton à un JPanel pour l'afficher
-		}
-
-		// LE CONTENEUR
 		container.setLayout(new BorderLayout());  // on choisit le layout qui va oganiser le JPanel
 		container.setBackground(Color.WHITE);
 
-		Boutons.setBackground(Color.white) ;
-		container.add(Boutons, BorderLayout.SOUTH) ;  //on place les boutons dans le JPanel suivant le layout
-	}
-
-	/**
-	 * pour l'affichage il faut souvent utiliser repaint() mais je ne sais plus à quel moment
-	 */
-	public void affichageBataille (int choix1, int choix2, int score) {
-		//p1.repaint() ;
-		//p2.repaint();
+		container.add(but, BorderLayout.EAST) ;  
+		container.add(combo1, BorderLayout.WEST) ;
+		container.add(lab, BorderLayout.NORTH) ;
 	}
 
 	/**
 	 * Ecoute les clics sur les boutons
 	 */
-	class BoutonListener implements ActionListener {
+	class ButtonListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent arg0) {
-			if (arg0.getSource() == tab_button_control[0]) {     // permet d'identitifier quel bouton
-				tab_button_control[0].setEnabled(false) ;
-				tab_button_control[1].setEnabled(true) ;
-			}
-			if (arg0.getSource() == tab_button_control[1]) {     // permet d'identitifier quel bouton
-				double [] tab = new double[3] ;
-				tab_button_control[0].setEnabled(true) ;
-				tab_button_control[1].setEnabled(false) ;
-			}
+			if (arg0.getSource() == combo1) colors = (Integer.valueOf (combo1.getSelectedItem().toString())) ;
+			if (arg0.getSource() == but) new SampleWindow() ;
+			//essayer de faire une pop-up
+
 		}
 	}
 }

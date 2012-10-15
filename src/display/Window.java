@@ -3,8 +3,8 @@ package display;
 public class Window {
 	
 	public static void main(String[] args) {
-//		FirstWindow  w  = new FirstWindow()  ;
-		SecondWindow w2 = new SecondWindow() ;
+//		SampleWindow  w  = new SampleWindow()  ;
+		FirstWindow w2 = new FirstWindow() ;
 	}
 
 }
