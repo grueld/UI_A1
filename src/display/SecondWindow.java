@@ -14,7 +14,7 @@ import javax.swing.border.EmptyBorder;
 public class SecondWindow extends JFrame {
 
 	private JPanel contentPane;
-	private List<ColorPanel> cPList= new ArrayList<ColorPanel> () ;
+	private List<ColorPanel> colorList= new ArrayList<ColorPanel> () ;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -49,13 +49,15 @@ public class SecondWindow extends JFrame {
 	public void initComposants(int nbrOfColor) {
 		for (int i = 0; i < nbrOfColor ; i++) {
 			ColorPanel pan = new ColorPanel() ;
-			cPList.add(pan) ;
+			colorList.add(pan) ;
 		}
-		for (Object p : cPList) contentPane.add((JPanel) p) ;
+		for (Object p : colorList) contentPane.add((JPanel) p) ;
 	}
 	
 	public void deleteColorPanel (int id) {
-		cPList.remove(id) ;
+		colorList.remove(id) ;
+//		List<ColorPanel> newList
 		this.dispose() ;
+		
 	}
 }
