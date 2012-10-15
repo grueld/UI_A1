@@ -3,6 +3,7 @@ package display;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 public class FirstWindow extends JFrame {
 
@@ -23,20 +25,21 @@ public class FirstWindow extends JFrame {
 	public FirstWindow() {
 		// ici on a le titre, la taille et quelques settings de la fenetre
 		setTitle ("chaud les marons chauds") ;
-		setSize (200, 200) ;                               
+		setSize (300, 100) ;                               
 		setLocation (300,0) ;              	         
 		setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE) ; 
 		setResizable (true) ;
 		initComposants() ;
 		setContentPane(container) ; //ici on ajoute le JPanel qui contient tout ce que l'on veut afficher
-		setVisible(true);			
+		setVisible(true);
 	}
 
 	private void initComposants() {
 		JLabel lab = new JLabel("how many for you?") ;
 		lab.setFont (new Font("Courier", Font.BOLD, 18)) ;
+		lab.setBorder(new EmptyBorder(0,0,0,10));
 
-		String[] tab = {"2", "3", "4", "5"} ;
+		String[] tab = {"2", "3", "4", "5", "6", "7", "8", "9", "10"};
 		combo1 = new JComboBox(tab);
 		combo1.addActionListener(new ButtonListener()) ;
 
@@ -50,12 +53,12 @@ public class FirstWindow extends JFrame {
 			un_jpanel.add (label1) ;                              //ensuite on doit l'ajouter à un JPanel
 		 */
 
-		container.setLayout(new BorderLayout());  // on choisit le layout qui va oganiser le JPanel
+		container.setLayout(new FlowLayout());  // on choisit le layout qui va oganiser le JPanel
 		container.setBackground(Color.WHITE);
-
-		container.add(but, BorderLayout.EAST) ;  
-		container.add(combo1, BorderLayout.WEST) ;
-		container.add(lab, BorderLayout.NORTH) ;
+		container.add(lab);
+		container.add(combo1);
+		container.add(but);  
+		
 	}
 
 	/**
@@ -67,7 +70,11 @@ public class FirstWindow extends JFrame {
 			if (arg0.getSource() == combo1) colors = (Integer.valueOf (combo1.getSelectedItem().toString())) ;
 			if (arg0.getSource() == but) new SampleWindow() ;
 			//essayer de faire une pop-up
-
 		}
+	}
+	
+	public static void main(String[] args) {
+//		SampleWindow  w  = new SampleWindow()  ;
+		FirstWindow w2 = new FirstWindow() ;
 	}
 }
