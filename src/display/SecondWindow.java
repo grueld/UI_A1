@@ -41,7 +41,7 @@ public class SecondWindow extends JFrame {
 
 	public void initComponents(int nbrOfColors) {
 		for (int i = 0; i < nbrOfColors ; i++) {
-			contentPane.add(new ColorPanel(this.contentPane));
+			contentPane.add(new ColorPanel(this));
 			//ColorPanel pan = new ColorPanel(this.contentPane) ;
 			// colorList.add(pan) ;   not needed for remove feature
 		}
