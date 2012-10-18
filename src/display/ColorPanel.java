@@ -12,12 +12,12 @@ public class ColorPanel extends JPanel implements ActionListener{
 	private JPanel colorPanel;
 	private JPanel greyPanel;
 	private JButton deleteButton;
-	private JComponent parent;
+	private JFrame parent;
 	
-	public ColorPanel(JComponent comp) 
+	public ColorPanel(JFrame frame) 
 	{
 		super();
-		this.parent = comp;
+		this.parent = frame;
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[] {0, 0};
@@ -98,9 +98,10 @@ public class ColorPanel extends JPanel implements ActionListener{
 		   }
 		 }else if (ae.getSource() == deleteButton)
 		 {
-			 this.parent.remove(this);
-			 this.parent.revalidate();
-			 this.parent.repaint();
+			 this.parent.getContentPane().remove(this);
+			 this.parent.getContentPane().validate();
+			 this.parent.getContentPane().repaint();
+			 this.parent.pack();
 		 }
 	}
 	
