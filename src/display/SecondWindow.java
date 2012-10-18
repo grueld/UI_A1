@@ -15,7 +15,7 @@ public class SecondWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SecondWindow frame = new SecondWindow(4);
+					SecondWindow frame = new SecondWindow(3);
 					frame.setLocation (200,200) ;
 					frame.pack();
 					frame.setVisible(true);
@@ -35,7 +35,7 @@ public class SecondWindow extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setLayout(new FlowLayout());
 		setContentPane(contentPane);
-		setTitle("Your colors");
+		setTitle("Your " + nbrOfColors + "colors");
 		setSize(120 * nbrOfColors, 100);              	         
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		initComponents();
@@ -51,10 +51,15 @@ public class SecondWindow extends JFrame {
 	}
 	
 	
-	public void remove (Component comp) {
-		nbrOfColors-- ;
+	public void remove1 (Component comp) {
 		this.remove(comp) ;
-		this.pack() ;
+		nbrOfColors-- ;
+		if (nbrOfColors == 2) {
+			ColorPanel c = (ColorPanel) getContentPane().getComponent(0) ;
+			c.deleteButton.setEnabled(false) ;
+			c = (ColorPanel) getContentPane().getComponent(1) ;
+			c.deleteButton.setEnabled(false) ;
+		}
 	}
 	// no need to use this method since the remove feature is implemented in the 
 	// action listener of class ColorPanel
