@@ -42,7 +42,7 @@ public class SecondWindow extends JFrame {
 		setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE) ; 
 		initComposants(nbrOfColor) ;
 		setContentPane(contentPane);
-		setResizable (false) ;
+		setResizable (true) ;
 		setVisible(true) ;
 	}
 
