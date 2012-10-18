@@ -35,7 +35,7 @@ public class ColorPanel extends JPanel implements ActionListener
 		   {
 			   chosenColor = tmp;
 			   colorPanel.setBackground(chosenColor);
-			   //Greyscale
+			   //Greyscale (luminosity method)
 			   int GreyComponent = (int) (0.21*tmp.getRed() + 0.71*tmp.getGreen() + 0.07*tmp.getBlue());
 			   chosenColorGrey = new Color (GreyComponent, GreyComponent, GreyComponent);
 			   greyPanel.setBackground(chosenColorGrey);
