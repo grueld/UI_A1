@@ -28,7 +28,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
 		setLayout(gbl_panel);
 		
-		chooserButton = new JButton("Choose Color");
+		chooserButton = new JButton("Choose color");
 		GridBagConstraints gbc_btnChooseColor = new GridBagConstraints();
 		gbc_btnChooseColor.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnChooseColor.gridwidth = 2;
@@ -37,7 +37,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 		chooserButton.addActionListener(this);
 		add(chooserButton, gbc_btnChooseColor);
 		
-		JLabel lblChosenColor = new JLabel("Chosen Color:");
+		JLabel lblChosenColor = new JLabel("Chosen color :");
 		GridBagConstraints gbc_lblChosenColor = new GridBagConstraints();
 		gbc_lblChosenColor.fill = GridBagConstraints.VERTICAL;
 		gbc_lblChosenColor.anchor = GridBagConstraints.FIRST_LINE_START;
@@ -55,7 +55,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 		colorPanel.setPreferredSize(new Dimension(50, 50));
 		add(colorPanel, gbc_panel_1);
 		
-		JLabel lblChosenColorGrey = new JLabel("Chosen Color in greyscale: ");
+		JLabel lblChosenColorGrey = new JLabel("Chosen color in greyscale when printed : ");
 		GridBagConstraints gbc_lblChosenColorIn = new GridBagConstraints();
 		gbc_lblChosenColorIn.anchor = GridBagConstraints.BASELINE;
 		gbc_lblChosenColorIn.gridx = 0;
@@ -71,7 +71,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 		greyPanel.setPreferredSize(new Dimension(50, 50));
 		add(greyPanel, gbc_panel_2);
 		
-		deleteButton = new JButton("Delete Color");
+		deleteButton = new JButton("Delete color");
 		GridBagConstraints gbc_btnDeleteColor = new GridBagConstraints();
 		gbc_btnDeleteColor.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnDeleteColor.gridwidth = 2;
