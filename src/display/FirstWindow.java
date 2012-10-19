@@ -26,7 +26,7 @@ public class FirstWindow extends JFrame {
 		// ici on a le titre, la taille et quelques settings de la fenetre
 		setTitle ("chaud les marons chauds") ;
 		setSize (300, 100) ;                               
-		setLocation (300,0) ;              	         
+		setLocation (300,200) ;              	         
 		setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE) ; 
 		setResizable (true) ;
 		initComposants() ;
