@@ -16,7 +16,7 @@ public class SecondWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SecondWindow frame = new SecondWindow(12);
+					SecondWindow frame = new SecondWindow(10);
 					frame.setVisible(true);
 					frame.setResizable(false);
 				} catch (Exception e) {
@@ -32,10 +32,10 @@ public class SecondWindow extends JFrame {
 	public SecondWindow(int n) {
 		nbrOfColors = n ;
 		contentPane = new JPanel();
-		contentPane.setLayout(new FlowLayout()) ;
+		contentPane.setLayout(new GridLayout(0,4)) ;
 		setContentPane(contentPane) ;
 		setTitle("Your " + nbrOfColors + "colors");
-		setSize(120 * nbrOfColors, 5666660) ;              	         
+		//setSize(120 * nbrOfColors, 5666660) ;              	         
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		initComponents();
 		pack();
@@ -47,6 +47,8 @@ public class SecondWindow extends JFrame {
 			//ColorPanel pan = new ColorPanel(this.contentPane) ;
 			// colorList.add(pan) ;   not needed for remove feature
 		}
+		a = new AddPanel(this) ;
+		contentPane.add(a);
 		// for (Object p : colorList) contentPane.add((JPanel) p) ; not needed for remove feature
 	}
 	
