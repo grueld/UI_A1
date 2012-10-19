@@ -46,7 +46,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 		add(lblChosenColor, gbc_lblChosenColor);
 		
 		colorPanel = new JPanel();
-		colorPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		colorPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 1, 0, Color.BLACK));
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_1.fill = GridBagConstraints.BOTH;
@@ -64,7 +64,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 		add(lblChosenColorGrey, gbc_lblChosenColorIn);
 		
 		greyPanel = new JPanel();
-		greyPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		greyPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 1, 0, Color.BLACK));
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
 		gbc_panel_2.fill = GridBagConstraints.BOTH;
 		gbc_panel_2.gridx = 0;
