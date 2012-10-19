@@ -6,6 +6,7 @@ import java.awt.*;
 
 public class SecondWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
+	protected boolean [] TableGreyScale = new boolean [40];
 	
 	private JPanel contentPane;
 	private int nbrOfColors ;
