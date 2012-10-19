@@ -83,13 +83,17 @@ public class ColorPanel extends JPanel implements ActionListener{
 		add(deleteButton, gbc_btnDeleteColor);
 	}
 	
-	public int GetAvailableGreyScale(double GreyComponent)
+	public int GetAvailableGreyScale(Color tmp)
 	{
+		double GreyComponent = 0.2125*tmp.getRed() + 0.7154*tmp.getGreen() + 0.0721*tmp.getBlue();
 		double SubdivisionLength = 255.0/9;
 		int IndexGreyScaleInTable = (int) (GreyComponent/SubdivisionLength);
 		if (((SecondWindow)parent).TableGreyScale[IndexGreyScaleInTable] == false) 
 		{
 			((SecondWindow)parent).TableGreyScale[IndexGreyScaleInTable] = true;
+			((SecondWindow)parent).TableColour[IndexGreyScaleInTable][0] = tmp.getRed();
+			((SecondWindow)parent).TableColour[IndexGreyScaleInTable][1] = tmp.getGreen();
+			((SecondWindow)parent).TableColour[IndexGreyScaleInTable][2] = tmp.getBlue();
 			return (int) (IndexGreyScaleInTable*SubdivisionLength);
 		}
 		else 
@@ -100,8 +104,36 @@ public class ColorPanel extends JPanel implements ActionListener{
 				i++;
 			}
 			((SecondWindow)parent).TableGreyScale[i] = true;
+			((SecondWindow)parent).TableColour[i][0] = tmp.getRed();
+			((SecondWindow)parent).TableColour[i][1] = tmp.getGreen();
+			((SecondWindow)parent).TableColour[i][2] = tmp.getBlue();
 			return (int) (i*SubdivisionLength);
 		}
+	}
+	
+	
+	public void RemoveColorInTables(Color tmp)
+	{
+		boolean IndexFound = false;
+		int i=0;
+		while(IndexFound == false)
+		{
+			if(((SecondWindow)parent).TableColour[i][0] == tmp.getRed())
+			{
+				if(((SecondWindow)parent).TableColour[i][1] == tmp.getGreen())
+				{
+					if(((SecondWindow)parent).TableColour[i][2] == tmp.getBlue())
+					{
+						IndexFound = true;
+					}
+				}
+			}
+			i++;
+		}
+		((SecondWindow)parent).TableGreyScale[i-1] = false;
+		((SecondWindow)parent).TableColour[i-1][0] = -1;
+		((SecondWindow)parent).TableColour[i-1][1] = -1;
+		((SecondWindow)parent).TableColour[i-1][2] = -1;	
 	}
 	
 	
@@ -114,13 +146,13 @@ public class ColorPanel extends JPanel implements ActionListener{
 			   Color chosenColor = tmp;
 			   colorPanel.setBackground(chosenColor);
 			   //Greyscale (luminosity method)
-			   double GreyComponent = 0.2125*tmp.getRed() + 0.7154*tmp.getGreen() + 0.0721*tmp.getBlue();
-			   int GreyComponentAvailable = GetAvailableGreyScale(GreyComponent);
+			   int GreyComponentAvailable = GetAvailableGreyScale(tmp);
 			   Color chosenColorGrey = new Color (GreyComponentAvailable, GreyComponentAvailable, GreyComponentAvailable);
 			   greyPanel.setBackground(chosenColorGrey);
 		   }
 		 }else if (ae.getSource() == deleteButton)
 		 {
+			 RemoveColorInTables(this.colorPanel.getBackground());
 			 this.parent.remove(this);
 			 this.parent.pack();
 		 }
