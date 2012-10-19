@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 
 public class SecondWindow extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
-	protected boolean [] TableGreyScale = new boolean [10];
-	protected int [][] TableColour = new int [10][3];
+	protected boolean [] TableGreyScale = new boolean [10];//subdivisions of the greyscale
+	protected int [][] TableColour = new int [10][3];//the R,G and B components of the colors
 
 	private JPanel contentPane;
 	private int nbrOfColors ;
