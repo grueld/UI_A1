@@ -9,6 +9,7 @@ public class SecondWindow extends JFrame {
 	
 	private JPanel contentPane;
 	private int nbrOfColors ;
+	private AddPanel a;
 	// private List<ColorPanel> colorList= new ArrayList<ColorPanel> () ; not needed for remove feature
 	
 	public static void main(String[] args) {
@@ -65,10 +66,19 @@ public class SecondWindow extends JFrame {
 	
 	public void addColorPanel() {
 		nbrOfColors++ ;
-		setTitle("Your " + nbrOfColors + "colors");
-		
+		setTitle("Your " + nbrOfColors + "colors") ;
+		super.remove(a) ;
 		contentPane.add(new ColorPanel(this)) ;
-		
+		add(a) ;
+		if (nbrOfColors == 3) {
+			ColorPanel c = (ColorPanel) getContentPane().getComponent(0) ;
+			c.deleteButton.setEnabled(true) ;
+			c = (ColorPanel) getContentPane().getComponent(1) ;
+			c.deleteButton.setEnabled(true) ;
+		}
+		else if (nbrOfColors == 10) {
+			a.addButton.setEnabled(false) ;
+		}
 		pack() ;
 	}
 
