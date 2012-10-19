@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 public class FirstWindow extends JFrame {
 
 	private JPanel container = new JPanel() ;    // un JFrame contient un ou plusieurs JPanel
-	int colors ;
+	int colors = 2 ;
 	JComboBox combo1 ;
 	JButton but ;
 
@@ -65,6 +65,7 @@ public class FirstWindow extends JFrame {
 			}
 			else if (arg0.getSource() == but) {
 				new SecondWindow(colors) ;
+				FirstWindow.this.dispose() ;
 			}
 			//essayer de faire une pop-up
 		}
