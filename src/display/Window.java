@@ -18,7 +18,6 @@ public class Window {
 
 		// if the user doesn't cancel
 		if (color != null) {
-			System.out.println("allo" + color +"\n") ;
 			new SecondWindow(Integer.valueOf (color)) ;
 		}
 	}
