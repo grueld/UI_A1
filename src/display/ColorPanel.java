@@ -12,7 +12,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 	private JButton chooserButton;
 	private JPanel colorPanel;
 	private JPanel greyPanel;
-	private JButton deleteButton;
+	protected JButton deleteButton;
 	private JFrame parent;
 	
 	public ColorPanel(JFrame frame) 
@@ -121,10 +121,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 		   }
 		 }else if (ae.getSource() == deleteButton)
 		 {
-			 this.parent.getContentPane().remove(this);
-			 this.parent.getContentPane().validate();
-			 this.parent.getContentPane().repaint();
-			 this.parent.pack();
+			 ((SecondWindow) parent).removePanel(this);
 		 }
 	}
 	
