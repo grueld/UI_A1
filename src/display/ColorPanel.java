@@ -99,7 +99,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 		else 
 		{
 			int i=0;
-			while (((SecondWindow)parent).TableGreyScale[i] == true)
+			while (((SecondWindow)parent).TableGreyScale[i] == true && i<40)
 			{
 				i++;
 			}
@@ -116,7 +116,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 	{
 		boolean IndexFound = false;
 		int i=0;
-		while(IndexFound == false)
+		while(IndexFound == false && i<10)
 		{
 			if(((SecondWindow)parent).TableColour[i][0] == tmp.getRed())
 			{
@@ -130,10 +130,13 @@ public class ColorPanel extends JPanel implements ActionListener{
 			}
 			i++;
 		}
-		((SecondWindow)parent).TableGreyScale[i-1] = false;
-		((SecondWindow)parent).TableColour[i-1][0] = -1;
-		((SecondWindow)parent).TableColour[i-1][1] = -1;
-		((SecondWindow)parent).TableColour[i-1][2] = -1;	
+		if (IndexFound == true)
+		{
+			((SecondWindow)parent).TableGreyScale[i-1] = false;
+			((SecondWindow)parent).TableColour[i-1][0] = -1;
+			((SecondWindow)parent).TableColour[i-1][1] = -1;
+			((SecondWindow)parent).TableColour[i-1][2] = -1;	
+		}
 	}
 	
 	
@@ -152,7 +155,11 @@ public class ColorPanel extends JPanel implements ActionListener{
 		   }
 		 }else if (ae.getSource() == deleteButton)
 		 {
-			 RemoveColorInTables(this.colorPanel.getBackground());
+			 Color tmp = this.colorPanel.getBackground();
+			 if (tmp != null)
+			 {
+				 RemoveColorInTables(tmp);
+			 }
 			 this.parent.remove(this);
 			 this.parent.pack();
 		 }
