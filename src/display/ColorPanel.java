@@ -31,7 +31,6 @@ public class ColorPanel extends JPanel implements ActionListener{
 		chooserButton = new JButton("Choose Color");
 		GridBagConstraints gbc_btnChooseColor = new GridBagConstraints();
 		gbc_btnChooseColor.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_btnChooseColor.insets = new Insets(0, 0, 5, 0);
 		gbc_btnChooseColor.gridwidth = 2;
 		gbc_btnChooseColor.gridx = 0;
 		gbc_btnChooseColor.gridy = 0;
@@ -59,7 +58,6 @@ public class ColorPanel extends JPanel implements ActionListener{
 		JLabel lblChosenColorGrey = new JLabel("Chosen Color in greyscale: ");
 		GridBagConstraints gbc_lblChosenColorIn = new GridBagConstraints();
 		gbc_lblChosenColorIn.anchor = GridBagConstraints.BASELINE;
-//		gbc_lblChosenColorIn.insets = new Insets(0, 0, 0, 5);
 		gbc_lblChosenColorIn.gridx = 0;
 		gbc_lblChosenColorIn.gridy = 3;
 		add(lblChosenColorGrey, gbc_lblChosenColorIn);
@@ -76,7 +74,6 @@ public class ColorPanel extends JPanel implements ActionListener{
 		deleteButton = new JButton("Delete Color");
 		GridBagConstraints gbc_btnDeleteColor = new GridBagConstraints();
 		gbc_btnDeleteColor.fill = GridBagConstraints.HORIZONTAL;
-		//gbc_btnDeleteColor.insets = new Insets(0, 0, 5, 0);
 		gbc_btnDeleteColor.gridwidth = 2;
 		gbc_btnDeleteColor.gridx = 0;
 		gbc_btnDeleteColor.gridy = 5;

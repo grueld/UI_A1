@@ -21,7 +21,7 @@ public class SecondWindow extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		setSize(120 * nbrOfColors, 5666660) ;              	         
 		setLocation (200,200) ;
-		setResizable(true) ;
+		setResizable(false) ;
 		setVisible(true) ;
 
 		tools = new JToolBar() ;
