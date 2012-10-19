@@ -92,7 +92,7 @@ public class SecondWindow extends JFrame {
 		}
 		pack() ;
 	}
- 
+
 	private void title () {
 		setTitle("Your " + nbrOfColors + " colors") ;
 	}
