@@ -21,10 +21,11 @@ public class ColorPanel extends JPanel implements ActionListener{
 		this.parent = frame;
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] {0, 0};
-		gbl_panel.rowHeights = new int[] {0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 1.0};
-		gbl_panel.rowWeights = new double[]{0.0, 1.0, 1.0, 0};
+
+		gbl_panel.columnWidths = new int[] {0};
+		gbl_panel.rowHeights = new int[] {0, 0, 0, 0, 0, 0};
+		gbl_panel.columnWeights = new double[]{0.0};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
 		setLayout(gbl_panel);
 		
 		chooserButton = new JButton("Choose Color");
@@ -40,7 +41,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 		JLabel lblChosenColor = new JLabel("Chosen Color:");
 		GridBagConstraints gbc_lblChosenColor = new GridBagConstraints();
 		gbc_lblChosenColor.fill = GridBagConstraints.VERTICAL;
-		gbc_lblChosenColor.anchor = GridBagConstraints.BASELINE;
+		gbc_lblChosenColor.anchor = GridBagConstraints.FIRST_LINE_START;
 		gbc_lblChosenColor.gridx = 0;
 		gbc_lblChosenColor.gridy = 1;
 		add(lblChosenColor, gbc_lblChosenColor);
@@ -50,8 +51,8 @@ public class ColorPanel extends JPanel implements ActionListener{
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.insets = new Insets(0, 0, 5, 0);
 		gbc_panel_1.fill = GridBagConstraints.BOTH;
-		gbc_panel_1.gridx = 1;
-		gbc_panel_1.gridy = 1;
+		gbc_panel_1.gridx = 0;
+		gbc_panel_1.gridy = 2;
 		colorPanel.setPreferredSize(new Dimension(50, 50));
 		add(colorPanel, gbc_panel_1);
 		
@@ -60,15 +61,15 @@ public class ColorPanel extends JPanel implements ActionListener{
 		gbc_lblChosenColorIn.anchor = GridBagConstraints.BASELINE;
 //		gbc_lblChosenColorIn.insets = new Insets(0, 0, 0, 5);
 		gbc_lblChosenColorIn.gridx = 0;
-		gbc_lblChosenColorIn.gridy = 2;
+		gbc_lblChosenColorIn.gridy = 3;
 		add(lblChosenColorGrey, gbc_lblChosenColorIn);
 		
 		greyPanel = new JPanel();
 		greyPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
 		gbc_panel_2.fill = GridBagConstraints.BOTH;
-		gbc_panel_2.gridx = 1;
-		gbc_panel_2.gridy = 2;
+		gbc_panel_2.gridx = 0;
+		gbc_panel_2.gridy = 4;
 		greyPanel.setPreferredSize(new Dimension(50, 50));
 		add(greyPanel, gbc_panel_2);
 		
@@ -78,11 +79,10 @@ public class ColorPanel extends JPanel implements ActionListener{
 		//gbc_btnDeleteColor.insets = new Insets(0, 0, 5, 0);
 		gbc_btnDeleteColor.gridwidth = 2;
 		gbc_btnDeleteColor.gridx = 0;
-		gbc_btnDeleteColor.gridy = 3;
+		gbc_btnDeleteColor.gridy = 5;
 		deleteButton.addActionListener(this);
 		add(deleteButton, gbc_btnDeleteColor);
 	}
-	
 	
 	public int GetAvailableGreyScale(Color tmp)
 	{
@@ -144,13 +144,28 @@ public class ColorPanel extends JPanel implements ActionListener{
 	
 	public void RemoveColorInTables(Color tmp)
 	{
-		int IndexOfTmp = IndexOfColor(tmp);
-		if (IndexOfTmp != -1)
+		boolean IndexFound = false;
+		int i=0;
+		while(IndexFound == false && i<10)
 		{
-			((SecondWindow)parent).TableGreyScale[IndexOfTmp] = false;
-			((SecondWindow)parent).TableColour[IndexOfTmp][0] = -1;
-			((SecondWindow)parent).TableColour[IndexOfTmp][1] = -1;
-			((SecondWindow)parent).TableColour[IndexOfTmp][2] = -1;	
+			if(((SecondWindow)parent).TableColour[i][0] == tmp.getRed())
+			{
+				if(((SecondWindow)parent).TableColour[i][1] == tmp.getGreen())
+				{
+					if(((SecondWindow)parent).TableColour[i][2] == tmp.getBlue())
+					{
+						IndexFound = true;
+					}
+				}
+			}
+			i++;
+		}
+		if (IndexFound == true)
+		{
+			((SecondWindow)parent).TableGreyScale[i-1] = false;
+			((SecondWindow)parent).TableColour[i-1][0] = -1;
+			((SecondWindow)parent).TableColour[i-1][1] = -1;
+			((SecondWindow)parent).TableColour[i-1][2] = -1;	
 		}
 	}
 	
@@ -212,5 +227,4 @@ public class ColorPanel extends JPanel implements ActionListener{
 			this.parent.pack();
 		}
 	}
-
 }
