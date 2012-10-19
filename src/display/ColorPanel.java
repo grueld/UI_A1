@@ -85,6 +85,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 	//Search an available greyscale for the color
 	public int GetAvailableGreyScale(Color tmp)
 	{
+		//luminosity method
 		double GreyComponent = 0.2125*tmp.getRed() + 0.7154*tmp.getGreen() + 0.0721*tmp.getBlue();
 		double SubdivisionLength = 255.0/9;
 		int IndexGreyScaleInTable = (int) (GreyComponent/SubdivisionLength);
