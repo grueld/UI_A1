@@ -177,6 +177,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 				   int IndexOfTmp = IndexOfColor(tmp);
 				   if(IndexOfTmp == -1)
 				   {
+					   System.out.println("coucou");
 					   int IndexOfOldColor = IndexOfColor(OldColor);
 					   if(IndexOfOldColor != -1)
 					   {
