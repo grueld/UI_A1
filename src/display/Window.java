@@ -16,6 +16,7 @@ public class Window {
 	      tab[0]);
 
 	    if (color != null) {
+	    	System.out.println("allo" + color +"\n") ;
 	    	new SecondWindow(Integer.valueOf (color)) ;
 	    }
 //		FirstWindow w = new FirstWindow() ;

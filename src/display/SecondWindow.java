@@ -16,7 +16,7 @@ public class SecondWindow extends JFrame implements ActionListener {
 	private JButton add ;
 
 	public SecondWindow(int n) {
-
+		nbrOfColors = n ;
 		title() ;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		setSize(120 * nbrOfColors, 5666660) ;              	         
@@ -24,7 +24,6 @@ public class SecondWindow extends JFrame implements ActionListener {
 		setResizable(true) ;
 		setVisible(true) ;
 
-		nbrOfColors = n ;
 		tools = new JToolBar() ;
 		add = new JButton("Add") ;
 		add.addActionListener(this) ;
