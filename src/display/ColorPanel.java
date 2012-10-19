@@ -159,34 +159,57 @@ public class ColorPanel extends JPanel implements ActionListener{
 		if (ae.getSource() == chooserButton)
 		{
 		   Color tmp = JColorChooser.showDialog(this,"Choose color",this.getBackground());
+		   Color OldColor = colorPanel.getBackground();
+		   Color OldColorGrey = greyPanel.getBackground();
 		   if (tmp != null)
 		   {
-			   int IndexOfTmp = IndexOfColor(tmp);
-			   if(IndexOfTmp == -1)
+			   if (!(OldColor.getRed() == tmp.getRed() && 
+					   OldColor.getGreen() == tmp.getGreen() && 
+					   OldColor.getBlue() == tmp.getBlue())
+					   || 
+					   (OldColor.getRed() == 238 &&
+					   OldColor.getGreen() == 238 &&
+					   OldColor.getBlue() == 238 &&
+					   OldColorGrey.getRed() == 238 &&
+					   OldColorGrey.getGreen() == 238 &&
+					   OldColorGrey.getBlue() == 238))
 			   {
-				   Color chosenColor = tmp;
-				   colorPanel.setBackground(chosenColor);
-				   //Greyscale (luminosity method)
-				   int GreyComponentAvailable = GetAvailableGreyScale(tmp);
-				   Color chosenColorGrey = new Color (GreyComponentAvailable, GreyComponentAvailable, GreyComponentAvailable);
-				   greyPanel.setBackground(chosenColorGrey);
-			   }
-			   else
-			   {
-				   JOptionPane j1 = new JOptionPane();
-				   j1.showMessageDialog(null, "You have aleady chosen this color !", "Error", JOptionPane.ERROR_MESSAGE);
+				   int IndexOfTmp = IndexOfColor(tmp);
+				   if(IndexOfTmp == -1)
+				   {
+					   int IndexOfOldColor = IndexOfColor(OldColor);
+					   if(IndexOfOldColor != -1)
+					   {
+						   ((SecondWindow)parent).TableGreyScale[IndexOfOldColor] = false;
+						   ((SecondWindow)parent).TableColour[IndexOfOldColor][0] = -1;
+						   ((SecondWindow)parent).TableColour[IndexOfOldColor][1] = -1;
+						   ((SecondWindow)parent).TableColour[IndexOfOldColor][2] = -1;
+					   }
+					   Color chosenColor = tmp;
+					   colorPanel.setBackground(chosenColor);
+					   //Greyscale (luminosity method)
+					   int GreyComponentAvailable = GetAvailableGreyScale(tmp);
+					   Color chosenColorGrey = new Color (GreyComponentAvailable, GreyComponentAvailable, GreyComponentAvailable);
+					   greyPanel.setBackground(chosenColorGrey);
+				   }
+				   else
+				   {
+					   JOptionPane j1 = new JOptionPane();
+					   j1.showMessageDialog(null, "You have aleady chosen this color !", "Error", JOptionPane.ERROR_MESSAGE);
+				   }
 			   }
 		   }
-		 }else if (ae.getSource() == deleteButton)
-		 {
-			 Color tmp = this.colorPanel.getBackground();
-			 if (tmp != null)
-			 {
-				 RemoveColorInTables(tmp);
-			 }
-			 this.parent.remove(this);
-			 this.parent.pack();
-		 }
+		}
+		else if (ae.getSource() == deleteButton)
+		{
+			Color tmp = this.colorPanel.getBackground();
+			if (tmp != null)
+			{
+				RemoveColorInTables(tmp);
+			}
+			this.parent.remove(this);
+			this.parent.pack();
+		}
 	}
-	
+
 }
