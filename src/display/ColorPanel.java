@@ -121,7 +121,8 @@ public class ColorPanel extends JPanel implements ActionListener{
 		   }
 		 }else if (ae.getSource() == deleteButton)
 		 {
-			 ((SecondWindow) parent).removePanel(this);
+			 this.parent.remove(this);
+			 this.parent.pack();
 		 }
 	}
 	
