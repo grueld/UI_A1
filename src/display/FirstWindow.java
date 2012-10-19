@@ -24,18 +24,18 @@ public class FirstWindow extends JFrame {
 
 	public FirstWindow() {
 		// ici on a le titre, la taille et quelques settings de la fenetre
-		setTitle ("chaud les marons chauds") ;
-		setSize (300, 100) ;                               
+		setTitle ("Choose number of colors") ;
+		setSize (400, 100) ;                               
 		setLocation (300,0) ;              	         
 		setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE) ; 
-		setResizable (true) ;
+		setResizable (false) ;
 		initComposants() ;
 		setContentPane(container) ; //ici on ajoute le JPanel qui contient tout ce que l'on veut afficher
 		setVisible(true);
 	}
 
 	private void initComposants() {
-		JLabel lab = new JLabel("how many for you?") ;
+		JLabel lab = new JLabel("How many colors do you want?") ;
 		lab.setFont (new Font("Courier", Font.BOLD, 18)) ;
 		lab.setBorder(new EmptyBorder(0,0,0,10));
 
@@ -43,7 +43,7 @@ public class FirstWindow extends JFrame {
 		combo1 = new JComboBox(tab);
 		combo1.addActionListener(new ButtonListener()) ;
 
-		but = new JButton("chaud patate") ;  
+		but = new JButton("OK") ;  
 		but.addActionListener (new ButtonListener()) ;
 
 		container.setLayout(new FlowLayout());  // on choisit le layout qui va oganiser le JPanel
