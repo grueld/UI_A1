@@ -15,11 +15,9 @@ public class SecondWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SecondWindow frame = new SecondWindow(4);
-					frame.setLocation (200,200) ;
-					frame.pack();
+					SecondWindow frame = new SecondWindow(15);
 					frame.setVisible(true);
-					frame.setResizable(false) ;
+					frame.setResizable(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -36,9 +34,10 @@ public class SecondWindow extends JFrame {
 		contentPane.setLayout(new FlowLayout());
 		setContentPane(contentPane);
 		setTitle("Your colors");
-		setSize(120 * nbrOfColors, 100);              	         
+		setMaximumSize(new Dimension(5000, 5000));              	         
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		initComponents();
+		pack();
 	}
 
 	public void initComponents() {
