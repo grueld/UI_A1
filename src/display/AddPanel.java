@@ -1,5 +1,6 @@
 package display;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,8 +18,9 @@ public class AddPanel extends JPanel implements ActionListener {
 		parent = frame ;
 		addButton = new JButton("add") ;
 		addButton.addActionListener(this) ;
-		add(addButton) ;
-		setLayout(new FlowLayout()) ;
+//		addButton.setSize(20, 20) ;
+		setLayout(new BorderLayout()) ;
+		add(addButton, BorderLayout.CENTER) ;
 	}
 
 	public void actionPerformed(ActionEvent e) {
