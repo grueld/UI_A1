@@ -33,6 +33,7 @@ The GUI will also alert the user when the same color is chosen twice.
 ---------------
 Communications:
 ---------------
+All members where present at each meeting
 
 October 12, 2012; 4:00 - 8:00;
 Setup of Git for source control.
