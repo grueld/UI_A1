@@ -9,6 +9,7 @@ public class SecondWindow extends JFrame {
 	
 	private JPanel contentPane;
 	private int nbrOfColors ;
+	private AddPanel a ;
 	// private List<ColorPanel> colorList= new ArrayList<ColorPanel> () ; not needed for remove feature
 	
 	public static void main(String[] args) {
@@ -47,26 +48,31 @@ public class SecondWindow extends JFrame {
 			//ColorPanel pan = new ColorPanel(this.contentPane) ;
 			// colorList.add(pan) ;   not needed for remove feature
 		}
+		a = new AddPanel(this) ;
+		contentPane.add(a) ;
 		// for (Object p : colorList) contentPane.add((JPanel) p) ; not needed for remove feature
 	}
 	
-	
-	public void remove1 (Component comp) {
+	public void removePanel (Component comp) {
 		this.remove(comp) ;
 		nbrOfColors-- ;
+		setTitle("Your " + nbrOfColors + " colors");
 		if (nbrOfColors == 2) {
 			ColorPanel c = (ColorPanel) getContentPane().getComponent(0) ;
 			c.deleteButton.setEnabled(false) ;
 			c = (ColorPanel) getContentPane().getComponent(1) ;
 			c.deleteButton.setEnabled(false) ;
 		}
+		pack() ;
 	}
-	// no need to use this method since the remove feature is implemented in the 
-	// action listener of class ColorPanel
-	/*public void deleteColorPanel (int id) {
-		colorList.remove(id) ;
-//		List<ColorPanel> newList
-		this.dispose() ;
-		
-	}*/
+	
+	public void addColorPanel() {
+		nbrOfColors++ ;
+		setTitle("Your " + nbrOfColors + "colors");
+		super.remove(a);
+		contentPane.add(new ColorPanel(this)) ;
+		add(a) ;
+		pack() ;
+	}
+
 }
