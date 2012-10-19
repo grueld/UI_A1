@@ -15,7 +15,7 @@ public class SecondWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SecondWindow frame = new SecondWindow(15);
+					SecondWindow frame = new SecondWindow(5);
 					frame.setVisible(true);
 					frame.setResizable(false);
 				} catch (Exception e) {
@@ -49,9 +49,9 @@ public class SecondWindow extends JFrame {
 		// for (Object p : colorList) contentPane.add((JPanel) p) ; not needed for remove feature
 	}
 	
-	
-	public void remove1 (Component comp) {
-		this.remove(comp) ;
+	@Override
+	public void remove (Component comp) {
+		super.remove(comp);
 		nbrOfColors-- ;
 		if (nbrOfColors == 2) {
 			ColorPanel c = (ColorPanel) getContentPane().getComponent(0) ;
