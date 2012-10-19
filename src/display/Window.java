@@ -8,7 +8,7 @@ public class Window {
 	    String[] tab = {"2", "3", "4", "5", "6", "7", "8", "9", "10"};
 	    JOptionPane jop = new JOptionPane() ;
 	    String color = (String)jop.showInputDialog(null, 
-	      "How many colors do you want?",
+	      "How many colors do you want ?",
 	      "Choose number of colors",
 	      JOptionPane.QUESTION_MESSAGE,
 	      null,
