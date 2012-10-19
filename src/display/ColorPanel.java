@@ -231,6 +231,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 				RemoveColorInTables(tmp);
 			}
 			this.parent.remove(this);
+			this.parent.repaint();
 			this.parent.pack();
 		}
 	}
