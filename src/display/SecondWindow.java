@@ -17,6 +17,8 @@ public class SecondWindow extends JFrame implements ActionListener {
 
 	public SecondWindow(int n) {
 		nbrOfColors = n ;
+		
+		// window settings
 		title() ;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		setSize(120 * nbrOfColors, 5666660) ;              	         
@@ -43,12 +45,14 @@ public class SecondWindow extends JFrame implements ActionListener {
 		for (int i = 0; i < nbrOfColors ; i++) {
 			contentPane.add(new ColorPanel(this));
 		}
+		// at least 2 colors
 		if (nbrOfColors == 2) {
 			ColorPanel c = (ColorPanel) contentPane.getComponent(0) ;
 			c.deleteButton.setEnabled(false) ;
 			c = (ColorPanel) contentPane.getComponent(1) ;
 			c.deleteButton.setEnabled(false) ;
 		}
+		// at most 10 colors
 		else if (nbrOfColors == 10) {
 			add.setEnabled(false) ;
 		}
@@ -67,11 +71,16 @@ public class SecondWindow extends JFrame implements ActionListener {
 		}
 	}
 
+	/**
+	 * Remove a ColorPanel from the window
+	 */
 	@Override
 	public void remove (Component comp) {
 		contentPane.remove(comp);
 		nbrOfColors-- ;
 		title() ;
+
+		// at least 2 colors
 		if (nbrOfColors == 2) {
 			ColorPanel c = (ColorPanel) contentPane.getComponent(0) ;
 			c.deleteButton.setEnabled(false) ;
@@ -84,6 +93,9 @@ public class SecondWindow extends JFrame implements ActionListener {
 		pack() ;
 	}
 
+	/**
+	 * Add a ColorPanel to the window
+	 */
 	public void addColorPanel() {
 		nbrOfColors++ ;
 		title() ;
@@ -94,6 +106,7 @@ public class SecondWindow extends JFrame implements ActionListener {
 			c = (ColorPanel) contentPane.getComponent(1) ;
 			c.deleteButton.setEnabled(true) ;
 		}
+		// at most 10 colors
 		else if (nbrOfColors == 10) {
 			add.setEnabled(false) ;
 		}
@@ -104,6 +117,9 @@ public class SecondWindow extends JFrame implements ActionListener {
 		setTitle("Your " + nbrOfColors + " colors") ;
 	}
 
+	/**
+	 * Action performed when the toolbar's add button is pressed
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == add) {
