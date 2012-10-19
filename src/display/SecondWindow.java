@@ -32,10 +32,10 @@ public class SecondWindow extends JFrame {
 	public SecondWindow(int n) {
 		nbrOfColors = n ;
 		contentPane = new JPanel();
-		contentPane.setLayout(new GridLayout(0,4));
-		setContentPane(contentPane);
+		contentPane.setLayout(new FlowLayout()) ;
+		setContentPane(contentPane) ;
 		setTitle("Your " + nbrOfColors + "colors");
-		setSize(120 * nbrOfColors, 100);              	         
+		setSize(120 * nbrOfColors, 5666660) ;              	         
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		initComponents();
 		pack();
