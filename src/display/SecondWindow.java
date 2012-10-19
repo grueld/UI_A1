@@ -53,19 +53,23 @@ public class SecondWindow extends JFrame {
 	public void remove (Component comp) {
 		super.remove(comp);
 		nbrOfColors-- ;
+		setTitle("Your " + nbrOfColors + " colors");
 		if (nbrOfColors == 2) {
 			ColorPanel c = (ColorPanel) getContentPane().getComponent(0) ;
 			c.deleteButton.setEnabled(false) ;
 			c = (ColorPanel) getContentPane().getComponent(1) ;
 			c.deleteButton.setEnabled(false) ;
 		}
+		pack() ;
 	}
-	// no need to use this method since the remove feature is implemented in the 
-	// action listener of class ColorPanel
-	/*public void deleteColorPanel (int id) {
-		colorList.remove(id) ;
-//		List<ColorPanel> newList
-		this.dispose() ;
+	
+	public void addColorPanel() {
+		nbrOfColors++ ;
+		setTitle("Your " + nbrOfColors + "colors");
 		
-	}*/
+		contentPane.add(new ColorPanel(this)) ;
+		
+		pack() ;
+	}
+
 }
