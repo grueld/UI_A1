@@ -63,6 +63,9 @@ public class SecondWindow extends JFrame {
 			c = (ColorPanel) getContentPane().getComponent(1) ;
 			c.deleteButton.setEnabled(false) ;
 		}
+		else if (nbrOfColors == 9) {
+			a.addButton.setEnabled(true) ;
+		}
 		pack() ;
 	}
 	
