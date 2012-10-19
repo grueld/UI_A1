@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class SecondWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
-	protected boolean [] TableGreyScale = new boolean [40];
+	protected boolean [] TableGreyScale = new boolean [10];
 	protected int [][] TableColour = new int [10][3];
 	
 	private JPanel contentPane;
@@ -45,7 +45,7 @@ public class SecondWindow extends JFrame {
 		}
 		
 		//initialization of the tables
-		for (int i=0; i<40; i++)
+		for (int i=0; i<10; i++)
 		{
 			TableGreyScale[i]=false;
 		}
