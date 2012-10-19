@@ -84,11 +84,14 @@ public class ColorPanel extends JPanel implements ActionListener{
 		add(deleteButton, gbc_btnDeleteColor);
 	}
 	
+	
+	//Search an available greyscale for the color
 	public int GetAvailableGreyScale(Color tmp)
 	{
 		double GreyComponent = 0.2125*tmp.getRed() + 0.7154*tmp.getGreen() + 0.0721*tmp.getBlue();
 		double SubdivisionLength = 255.0/9;
 		int IndexGreyScaleInTable = (int) (GreyComponent/SubdivisionLength);
+		//if the corresponding greyscale is available
 		if (((SecondWindow)parent).TableGreyScale[IndexGreyScaleInTable] == false) 
 		{
 			((SecondWindow)parent).TableGreyScale[IndexGreyScaleInTable] = true;
@@ -97,6 +100,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 			((SecondWindow)parent).TableColour[IndexGreyScaleInTable][2] = tmp.getBlue();
 			return (int) (IndexGreyScaleInTable*SubdivisionLength);
 		}
+		//if not, we search another one (and there is at least one)
 		else 
 		{
 			int i=0;
@@ -113,6 +117,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 	}
 	
 	
+	//Return the index of the color in both tables (same in both tables)
 	public int IndexOfColor(Color tmp)
 	{
 		boolean IndexFound = false;
@@ -131,10 +136,12 @@ public class ColorPanel extends JPanel implements ActionListener{
 			}
 			i++;
 		}
+		//if the color was found
 		if (IndexFound == true)
 		{
 			return (i-1);
 		}
+		//if the color was not found
 		else
 		{
 			return -1;
@@ -142,30 +149,16 @@ public class ColorPanel extends JPanel implements ActionListener{
 	}
 	
 	
+	// Remove the color in both tables
 	public void RemoveColorInTables(Color tmp)
 	{
-		boolean IndexFound = false;
-		int i=0;
-		while(IndexFound == false && i<10)
+		int IndexOfTmp = IndexOfColor(tmp);
+		if (IndexOfTmp != -1)
 		{
-			if(((SecondWindow)parent).TableColour[i][0] == tmp.getRed())
-			{
-				if(((SecondWindow)parent).TableColour[i][1] == tmp.getGreen())
-				{
-					if(((SecondWindow)parent).TableColour[i][2] == tmp.getBlue())
-					{
-						IndexFound = true;
-					}
-				}
-			}
-			i++;
-		}
-		if (IndexFound == true)
-		{
-			((SecondWindow)parent).TableGreyScale[i-1] = false;
-			((SecondWindow)parent).TableColour[i-1][0] = -1;
-			((SecondWindow)parent).TableColour[i-1][1] = -1;
-			((SecondWindow)parent).TableColour[i-1][2] = -1;	
+			((SecondWindow)parent).TableGreyScale[IndexOfTmp] = false;
+			((SecondWindow)parent).TableColour[IndexOfTmp][0] = -1;
+			((SecondWindow)parent).TableColour[IndexOfTmp][1] = -1;
+			((SecondWindow)parent).TableColour[IndexOfTmp][2] = -1;	
 		}
 	}
 	
@@ -178,6 +171,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 		   Color OldColorGrey = greyPanel.getBackground();
 		   if (tmp != null)
 		   {
+			   //if the color has been changed
 			   if (!(OldColor.getRed() == tmp.getRed() && 
 					   OldColor.getGreen() == tmp.getGreen() && 
 					   OldColor.getBlue() == tmp.getBlue())
@@ -190,8 +184,10 @@ public class ColorPanel extends JPanel implements ActionListener{
 					   OldColorGrey.getBlue() == 238))
 			   {
 				   int IndexOfTmp = IndexOfColor(tmp);
+				   //the color has not been chosen yet
 				   if(IndexOfTmp == -1)
 				   {
+					   //if the former color was not the grey by default, we have to remove it in both tables
 					   if(!(OldColor.getRed() == 238 &&
 							   OldColor.getGreen() == 238 &&
 							   OldColor.getBlue() == 238 &&
@@ -208,6 +204,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 							   ((SecondWindow)parent).TableColour[IndexOfOldColor][2] = -1;
 						   }
 					   }
+					   //new color
 					   Color chosenColor = tmp;
 					   colorPanel.setBackground(chosenColor);
 					   //Greyscale (luminosity method)
@@ -215,6 +212,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 					   Color chosenColorGrey = new Color (GreyComponentAvailable, GreyComponentAvailable, GreyComponentAvailable);
 					   greyPanel.setBackground(chosenColorGrey);
 				   }
+				   //the color has been already chosen
 				   else
 				   {
 					   JOptionPane j1 = new JOptionPane();
@@ -226,6 +224,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 		else if (ae.getSource() == deleteButton)
 		{
 			Color tmp = this.colorPanel.getBackground();
+			//we have to delete the color in both tables
 			if (tmp != null)
 			{
 				RemoveColorInTables(tmp);
