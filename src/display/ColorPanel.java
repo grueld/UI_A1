@@ -25,7 +25,6 @@ public class ColorPanel extends JPanel implements ActionListener{
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		chooserButton = new JButton("Choose Color");
-		chooserButton.setPreferredSize(new Dimension((int) this.getSize().getWidth(), 50));
 		chooserButton.addActionListener(this);
 		add(chooserButton);
 		
