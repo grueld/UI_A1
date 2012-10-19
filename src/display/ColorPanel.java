@@ -192,14 +192,21 @@ public class ColorPanel extends JPanel implements ActionListener{
 				   int IndexOfTmp = IndexOfColor(tmp);
 				   if(IndexOfTmp == -1)
 				   {
-					   System.out.println("coucou");
-					   int IndexOfOldColor = IndexOfColor(OldColor);
-					   if(IndexOfOldColor != -1)
+					   if(!(OldColor.getRed() == 238 &&
+							   OldColor.getGreen() == 238 &&
+							   OldColor.getBlue() == 238 &&
+							   OldColorGrey.getRed() == 238 &&
+							   OldColorGrey.getGreen() == 238 &&
+							   OldColorGrey.getBlue() == 238))
 					   {
-						   ((SecondWindow)parent).TableGreyScale[IndexOfOldColor] = false;
-						   ((SecondWindow)parent).TableColour[IndexOfOldColor][0] = -1;
-						   ((SecondWindow)parent).TableColour[IndexOfOldColor][1] = -1;
-						   ((SecondWindow)parent).TableColour[IndexOfOldColor][2] = -1;
+						   int IndexOfOldColor = IndexOfColor(OldColor);
+						   if(IndexOfOldColor != -1)
+						   {
+							   ((SecondWindow)parent).TableGreyScale[IndexOfOldColor] = false;
+							   ((SecondWindow)parent).TableColour[IndexOfOldColor][0] = -1;
+							   ((SecondWindow)parent).TableColour[IndexOfOldColor][1] = -1;
+							   ((SecondWindow)parent).TableColour[IndexOfOldColor][2] = -1;
+						   }
 					   }
 					   Color chosenColor = tmp;
 					   colorPanel.setBackground(chosenColor);
@@ -224,6 +231,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 				RemoveColorInTables(tmp);
 			}
 			this.parent.remove(this);
+			this.parent.repaint();
 			this.parent.pack();
 		}
 	}
