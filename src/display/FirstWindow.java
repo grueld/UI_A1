@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -34,22 +35,29 @@ public class FirstWindow extends JFrame {
 	}
 
 	private void initComposants() {
-		JLabel lab = new JLabel("How many colors do you want?") ;
-		lab.setFont (new Font("Courier", Font.BOLD, 18)) ;
-		lab.setBorder(new EmptyBorder(0,0,0,10));
+		
 
-		String[] tab = {"2", "3", "4", "5", "6", "7", "8", "9", "10"};
-		combo1 = new JComboBox(tab);
-		combo1.addActionListener(new ButtonListener()) ;
-
-		but = new JButton("OK") ;  
-		but.addActionListener (new ButtonListener()) ;
-
-		container.setLayout(new FlowLayout()); 
-		container.setBackground(Color.WHITE);
-		container.add(lab);
-		container.add(combo1);
-		container.add(but);  
+		
+		
+/////////////////////////// old version		
+		
+		
+//		JLabel lab = new JLabel("How many colors do you want?") ;
+//		lab.setFont (new Font("Courier", Font.BOLD, 18)) ;
+//		lab.setBorder(new EmptyBorder(0,0,0,10));
+//
+//		String[] tab = {"2", "3", "4", "5", "6", "7", "8", "9", "10"};
+//		combo1 = new JComboBox(tab);
+//		combo1.addActionListener(new ButtonListener()) ;
+//
+//		but = new JButton("OK") ;  
+//		but.addActionListener (new ButtonListener()) ;
+//
+//		container.setLayout(new FlowLayout()); 
+//		container.setBackground(Color.WHITE);
+//		container.add(lab);
+//		container.add(combo1);
+//		container.add(but);  
 
 	}
 
