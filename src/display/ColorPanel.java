@@ -3,6 +3,7 @@ package display;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class ColorPanel extends JPanel implements ActionListener{
 
@@ -82,6 +83,27 @@ public class ColorPanel extends JPanel implements ActionListener{
 		add(deleteButton, gbc_btnDeleteColor);
 	}
 	
+	public int GetAvailableGreyScale(double GreyComponent)
+	{
+		double SubdivisionLength = 255.0/19;
+		int IndexGreyScaleInTable = (int) (GreyComponent/SubdivisionLength);
+		if (((SecondWindow)parent).TableGreyScale[IndexGreyScaleInTable] == false) 
+		{
+			((SecondWindow)parent).TableGreyScale[IndexGreyScaleInTable] = true;
+			return (int) (IndexGreyScaleInTable*SubdivisionLength);
+		}
+		else 
+		{
+			int i=0;
+			while (((SecondWindow)parent).TableGreyScale[i] == true)
+			{
+				i++;
+			}
+			((SecondWindow)parent).TableGreyScale[i] = true;
+			return (int) (i*SubdivisionLength);
+		}
+	}
+	
 	
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource() == chooserButton)
@@ -92,13 +114,15 @@ public class ColorPanel extends JPanel implements ActionListener{
 			   Color chosenColor = tmp;
 			   colorPanel.setBackground(chosenColor);
 			   //Greyscale (luminosity method)
-			   int GreyComponent = (int) (0.21*tmp.getRed() + 0.71*tmp.getGreen() + 0.07*tmp.getBlue());
-			   Color chosenColorGrey = new Color (GreyComponent, GreyComponent, GreyComponent);
+			   double GreyComponent = 0.21*tmp.getRed() + 0.71*tmp.getGreen() + 0.07*tmp.getBlue();
+			   int GreyComponentAvailable = GetAvailableGreyScale(GreyComponent);
+			   Color chosenColorGrey = new Color (GreyComponentAvailable, GreyComponentAvailable, GreyComponentAvailable);
 			   greyPanel.setBackground(chosenColorGrey);
 		   }
 		 }else if (ae.getSource() == deleteButton)
 		 {
-			 ((SecondWindow) parent).removePanel(this);
+			 this.parent.remove(this);
+			 this.parent.pack();
 		 }
 	}
 	

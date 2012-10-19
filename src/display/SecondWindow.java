@@ -5,10 +5,11 @@ import java.awt.*;
 
 public class SecondWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
+	protected boolean [] TableGreyScale = new boolean [40];
 	
 	private JPanel contentPane;
 	private int nbrOfColors ;
-	private AddPanel a ;
+	private AddPanel a;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -18,7 +19,7 @@ public class SecondWindow extends JFrame {
 					frame.setLocation (200,200) ;
 					frame.pack();
 					frame.setVisible(true);
-					frame.setResizable(false) ;
+					frame.setResizable(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -29,12 +30,13 @@ public class SecondWindow extends JFrame {
 	public SecondWindow(int n) {
 		nbrOfColors = n ;
 		contentPane = new JPanel();
-		contentPane.setLayout(new FlowLayout()) ;
+		contentPane.setLayout(new GridLayout(0,4)) ;
 		setContentPane(contentPane) ;
 		title() ;
 		setSize(120 * nbrOfColors, 5666660) ;              	         
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		initComponents();
+		pack();
 	}
 
 	public void initComponents() {
@@ -54,8 +56,9 @@ public class SecondWindow extends JFrame {
 		}
 	}
 	
-	public void removePanel (Component comp) {
-		this.remove(comp) ;
+	@Override
+	public void remove (Component comp) {
+		super.remove(comp);
 		nbrOfColors-- ;
 		title() ;
 		if (nbrOfColors == 2) {
