@@ -52,6 +52,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 		add(deleteButton);
 	}
 	
+	
 	public int GetAvailableGreyScale(Color tmp)
 	{
 		double GreyComponent = 0.2125*tmp.getRed() + 0.7154*tmp.getGreen() + 0.0721*tmp.getBlue();
@@ -81,7 +82,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 	}
 	
 	
-	public void RemoveColorInTables(Color tmp)
+	public int IndexOfColor(Color tmp)
 	{
 		boolean IndexFound = false;
 		int i=0;
@@ -101,10 +102,24 @@ public class ColorPanel extends JPanel implements ActionListener{
 		}
 		if (IndexFound == true)
 		{
-			((SecondWindow)parent).TableGreyScale[i-1] = false;
-			((SecondWindow)parent).TableColour[i-1][0] = -1;
-			((SecondWindow)parent).TableColour[i-1][1] = -1;
-			((SecondWindow)parent).TableColour[i-1][2] = -1;	
+			return (i-1);
+		}
+		else
+		{
+			return -1;
+		}
+	}
+	
+	
+	public void RemoveColorInTables(Color tmp)
+	{
+		int IndexOfTmp = IndexOfColor(tmp);
+		if (IndexOfTmp != -1)
+		{
+			((SecondWindow)parent).TableGreyScale[IndexOfTmp] = false;
+			((SecondWindow)parent).TableColour[IndexOfTmp][0] = -1;
+			((SecondWindow)parent).TableColour[IndexOfTmp][1] = -1;
+			((SecondWindow)parent).TableColour[IndexOfTmp][2] = -1;	
 		}
 	}
 	
@@ -115,12 +130,21 @@ public class ColorPanel extends JPanel implements ActionListener{
 		   System.out.println(tmp);
 		   if (tmp != null)
 		   {
-			   Color chosenColor = tmp;
-			   colorPanel.setBackground(chosenColor);
-			   //Greyscale (luminosity method)
-			   int GreyComponentAvailable = GetAvailableGreyScale(tmp);
-			   Color chosenColorGrey = new Color (GreyComponentAvailable, GreyComponentAvailable, GreyComponentAvailable);
-			   greyPanel.setBackground(chosenColorGrey);
+			   int IndexOfTmp = IndexOfColor(tmp);
+			   if(IndexOfTmp == -1)
+			   {
+				   Color chosenColor = tmp;
+				   colorPanel.setBackground(chosenColor);
+				   //Greyscale (luminosity method)
+				   int GreyComponentAvailable = GetAvailableGreyScale(tmp);
+				   Color chosenColorGrey = new Color (GreyComponentAvailable, GreyComponentAvailable, GreyComponentAvailable);
+				   greyPanel.setBackground(chosenColorGrey);
+			   }
+			   else
+			   {
+				   JOptionPane j1 = new JOptionPane();
+				   j1.showMessageDialog(null, "You have aleady chosen this color !", "Error", JOptionPane.ERROR_MESSAGE);
+			   }
 		   }
 		 }else if (ae.getSource() == deleteButton)
 		 {
