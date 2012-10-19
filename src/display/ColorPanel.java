@@ -85,7 +85,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 	
 	public int GetAvailableGreyScale(double GreyComponent)
 	{
-		double SubdivisionLength = 255.0/19;
+		double SubdivisionLength = 255.0/9;
 		int IndexGreyScaleInTable = (int) (GreyComponent/SubdivisionLength);
 		if (((SecondWindow)parent).TableGreyScale[IndexGreyScaleInTable] == false) 
 		{
@@ -114,7 +114,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 			   Color chosenColor = tmp;
 			   colorPanel.setBackground(chosenColor);
 			   //Greyscale (luminosity method)
-			   double GreyComponent = 0.21*tmp.getRed() + 0.71*tmp.getGreen() + 0.07*tmp.getBlue();
+			   double GreyComponent = 0.2125*tmp.getRed() + 0.7154*tmp.getGreen() + 0.0721*tmp.getBlue();
 			   int GreyComponentAvailable = GetAvailableGreyScale(GreyComponent);
 			   Color chosenColorGrey = new Color (GreyComponentAvailable, GreyComponentAvailable, GreyComponentAvailable);
 			   greyPanel.setBackground(chosenColorGrey);
