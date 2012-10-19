@@ -1,8 +1,6 @@
 package display;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -22,36 +20,68 @@ public class ColorPanel extends JPanel implements ActionListener{
 		super();
 		this.parent = frame;
 		setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[] {0};
+		gbl_panel.rowHeights = new int[] {0, 0, 0, 0, 0, 0};
+		gbl_panel.columnWeights = new double[]{0.0};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0};
+		setLayout(gbl_panel);
 		
 		chooserButton = new JButton("Choose Color");
-		chooserButton.setPreferredSize(new Dimension((int) this.getSize().getWidth(), 50));
+		GridBagConstraints gbc_btnChooseColor = new GridBagConstraints();
+		gbc_btnChooseColor.fill = GridBagConstraints.HORIZONTAL;
+//		gbc_btnChooseColor.insets = new Insets(0, 0, 5, 0);
+		gbc_btnChooseColor.gridwidth = 2;
+		gbc_btnChooseColor.gridx = 0;
+		gbc_btnChooseColor.gridy = 0;
 		chooserButton.addActionListener(this);
-		add(chooserButton);
+		add(chooserButton, gbc_btnChooseColor);
 		
 		JLabel lblChosenColor = new JLabel("Chosen Color:");
-		lblChosenColor.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0));
-		add(lblChosenColor);
+		GridBagConstraints gbc_lblChosenColor = new GridBagConstraints();
+		gbc_lblChosenColor.fill = GridBagConstraints.VERTICAL;
+		gbc_lblChosenColor.anchor = GridBagConstraints.FIRST_LINE_START;
+		gbc_lblChosenColor.gridx = 0;
+		gbc_lblChosenColor.gridy = 1;
+		add(lblChosenColor, gbc_lblChosenColor);
 		
 		colorPanel = new JPanel();
 		colorPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
+		gbc_panel_1.insets = new Insets(0, 0, 5, 0);
+		gbc_panel_1.fill = GridBagConstraints.BOTH;
+		gbc_panel_1.gridx = 0;
+		gbc_panel_1.gridy = 2;
 		colorPanel.setPreferredSize(new Dimension(50, 50));
-		add(colorPanel);
+		add(colorPanel, gbc_panel_1);
 		
 		JLabel lblChosenColorGrey = new JLabel("Chosen Color in greyscale: ");
-		lblChosenColorGrey.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0));
-		add(lblChosenColorGrey);
+		GridBagConstraints gbc_lblChosenColorIn = new GridBagConstraints();
+		gbc_lblChosenColorIn.anchor = GridBagConstraints.BASELINE;
+//		gbc_lblChosenColorIn.insets = new Insets(0, 0, 0, 5);
+		gbc_lblChosenColorIn.gridx = 0;
+		gbc_lblChosenColorIn.gridy = 3;
+		add(lblChosenColorGrey, gbc_lblChosenColorIn);
 		
 		greyPanel = new JPanel();
 		greyPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
+		gbc_panel_2.fill = GridBagConstraints.BOTH;
+		gbc_panel_2.gridx = 0;
+		gbc_panel_2.gridy = 4;
 		greyPanel.setPreferredSize(new Dimension(50, 50));
-		add(greyPanel);
+		add(greyPanel, gbc_panel_2);
 		
 		deleteButton = new JButton("Delete Color");
+		GridBagConstraints gbc_btnDeleteColor = new GridBagConstraints();
+		gbc_btnDeleteColor.fill = GridBagConstraints.HORIZONTAL;
+		//gbc_btnDeleteColor.insets = new Insets(0, 0, 5, 0);
+		gbc_btnDeleteColor.gridwidth = 2;
+		gbc_btnDeleteColor.gridx = 0;
+		gbc_btnDeleteColor.gridy = 5;
 		deleteButton.addActionListener(this);
-		add(deleteButton);
+		add(deleteButton, gbc_btnDeleteColor);
 	}
-	
 	
 	public int GetAvailableGreyScale(Color tmp)
 	{
@@ -82,7 +112,7 @@ public class ColorPanel extends JPanel implements ActionListener{
 	}
 	
 	
-	public int IndexOfColor(Color tmp)
+	public void RemoveColorInTables(Color tmp)
 	{
 		boolean IndexFound = false;
 		int i=0;
@@ -102,24 +132,10 @@ public class ColorPanel extends JPanel implements ActionListener{
 		}
 		if (IndexFound == true)
 		{
-			return (i-1);
-		}
-		else
-		{
-			return -1;
-		}
-	}
-	
-	
-	public void RemoveColorInTables(Color tmp)
-	{
-		int IndexOfTmp = IndexOfColor(tmp);
-		if (IndexOfTmp != -1)
-		{
-			((SecondWindow)parent).TableGreyScale[IndexOfTmp] = false;
-			((SecondWindow)parent).TableColour[IndexOfTmp][0] = -1;
-			((SecondWindow)parent).TableColour[IndexOfTmp][1] = -1;
-			((SecondWindow)parent).TableColour[IndexOfTmp][2] = -1;	
+			((SecondWindow)parent).TableGreyScale[i-1] = false;
+			((SecondWindow)parent).TableColour[i-1][0] = -1;
+			((SecondWindow)parent).TableColour[i-1][1] = -1;
+			((SecondWindow)parent).TableColour[i-1][2] = -1;	
 		}
 	}
 	
@@ -130,21 +146,12 @@ public class ColorPanel extends JPanel implements ActionListener{
 		   System.out.println(tmp);
 		   if (tmp != null)
 		   {
-			   int IndexOfTmp = IndexOfColor(tmp);
-			   if(IndexOfTmp == -1)
-			   {
-				   Color chosenColor = tmp;
-				   colorPanel.setBackground(chosenColor);
-				   //Greyscale (luminosity method)
-				   int GreyComponentAvailable = GetAvailableGreyScale(tmp);
-				   Color chosenColorGrey = new Color (GreyComponentAvailable, GreyComponentAvailable, GreyComponentAvailable);
-				   greyPanel.setBackground(chosenColorGrey);
-			   }
-			   else
-			   {
-				   JOptionPane j1 = new JOptionPane();
-				   j1.showMessageDialog(null, "You have aleady chosen this color !", "Error", JOptionPane.ERROR_MESSAGE);
-			   }
+			   Color chosenColor = tmp;
+			   colorPanel.setBackground(chosenColor);
+			   //Greyscale (luminosity method)
+			   int GreyComponentAvailable = GetAvailableGreyScale(tmp);
+			   Color chosenColorGrey = new Color (GreyComponentAvailable, GreyComponentAvailable, GreyComponentAvailable);
+			   greyPanel.setBackground(chosenColorGrey);
 		   }
 		 }else if (ae.getSource() == deleteButton)
 		 {
